@@ -62,13 +62,15 @@
     <div class="message">"A gentleman is in the making."</div>
 
     <script>
-        function updateCountdown() {
-            const sixMonthsFromNow = new Date();
-            sixMonthsFromNow.setMonth(sixMonthsFromNow.getMonth() + 5); // 5 months from today
+    function updateCountdown() {
+        const sixMonthsFromNow = new Date();
+        sixMonthsFromNow.setMonth(sixMonthsFromNow.getMonth() + 5); // 5 months from today
 
-            const now = new Date();
-            const difference = sixMonthsFromNow - now;
+        const now = new Date();
+        const difference = sixMonthsFromNow - now;
 
+        // Ensure that the difference is not negative
+        if (difference > 0) {
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
@@ -76,9 +78,12 @@
 
             document.getElementById("countdown").innerHTML = days + "d " + hours + "h " 
                 + minutes + "m " + seconds + "s ";
+        } else {
+            document.getElementById("countdown").innerHTML = "The big day has arrived!";
         }
+    }
 
-        setInterval(updateCountdown, 1000);
-    </script>
+    setInterval(updateCountdown, 1000);
+</script>
 </body>
 </html>
